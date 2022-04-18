@@ -63,29 +63,13 @@ function new_phrase() {
 }
 
 function smoothRainbow(){
-	if (blue < destination_blue) {
-		blue += 1;
-	}
-	else if (blue > destination_blue){
-		blue -= 1;
-	}
-	if (red < destination_red) {
-		red += 1;
-	}
-	else if (red > destination_red){
-		red -= 1;
-	}
-	if (green < destination_green) {
-		green += 1;
-	}
-	else if (green > destination_green) {
-		green -= 1;
-	}
+	blue += Math.sign(destination_blue - blue);
+	red += Math.sign(destination_red - red);
+	green += Math.sign(destination_green - green);
 	if (red == destination_red && blue == destination_blue && green == destination_green) {
 		destination_red = Math.floor(Math.random() * 256);
 		destination_green = Math.floor(Math.random() * 256);
 		destination_blue = Math.floor(Math.random() * 256);
-		console.log("changed destination!")
 	}
 	phrase_zone.style.color = `rgb(${red}, ${green}, ${blue})`;
 }
