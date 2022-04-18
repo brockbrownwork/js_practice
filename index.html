@@ -19,6 +19,8 @@ var size = 50;
 var x = 0;
 var y = 0;
 var red = 0;
+var blue = 0;
+var green = 0;
 var old_height = window.innerWidth;
 var old_height = window.innerHeight;
 
@@ -35,9 +37,11 @@ var canvasMargin = 500
 function conform_canvas(){
 	if (window.innerWidth  - canvasMargin != context.canvas.width || 
 		window.innerHeight  - canvasMargin != context.canvas.height) {
+		// var temp = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
 		console.log("activated! (why?)");
 		context.canvas.width = window.innerWidth - canvasMargin;
 		context.canvas.height = window.innerHeight - canvasMargin;
+		// context.putImageData(temp, 0, 0);
 	}
 }
 
@@ -54,21 +58,20 @@ function new_phrase() {
 	
 }
 
-function rainbow() {
-	var red = String(Math.floor(Math.random() * 256));
-	var green = String(Math.floor(Math.random() * 256));
-	var blue = String(Math.floor(Math.random() * 256));
+function spazzRainbow() {
+	red = Math.floor(Math.random() * 256);
+	green = Math.floor(Math.random() * 256);
+	blue = Math.floor(Math.random() * 256);
 	// var rgb_string = "rgb(" + red + ", " + green + ", " + blue + ")";
-	var rgb_string = `rgb(${red}, ${green}, ${blue})`;
-	phrase_zone.style.color = rgb_string;
+	phrase_zone.style.color = `rgb(${red}, ${green}, ${blue})`;
 }
 
 window.onload = function() {
 	setInterval(draw_him, 10);
 	new_phrase();
 	setInterval(new_phrase, 1000);
-	setInterval(rainbow, 10);
-	setInterval(conform_canvas, 10);
+	setInterval(spazzRainbow, 10);
+	// setInterval(conform_canvas, 10);
 }
 
 /*
