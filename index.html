@@ -1,0 +1,76 @@
+<html>
+<canvas id = "someCanvas" width = "200" height = "200" style = "border:1px solid #000000;">
+<div style = "display:none;">
+	<img id = "cool_sunglasses"
+		src = "cool_sunglasses.png"
+		width = "10px"
+		height = "10px">
+</div>
+</canvas>
+<div id = "text" style="font-family:comic sans ms; font-size:25px">
+some words
+</div>
+<script>
+var canvas = document.getElementById("someCanvas");
+var context = canvas.getContext("2d");
+var size = 50;
+var x = 0;
+var y = 0;
+
+const cool_sunglasses = document.getElementById("cool_sunglasses");
+const phrases = ["oh yeah", "woo buddy", "wew lad", "totally unbogus!"];
+const phrase_zone = document.getElementById("text");
+
+function clear(){
+	context.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function draw_him() {
+	context.drawImage(	cool_sunglasses,
+						Math.random() * canvas.width,
+						Math.random() * canvas.height,
+						size * Math.random(),
+						size * Math.random());
+}
+function new_phrase() {
+	var phrase_number = Math.floor(Math.random() * 3);
+	phrase_zone.innerHTML = phrases[phrase_number];
+	
+}
+
+function rainbow() {
+	var red = String(Math.floor(Math.random() * 256));
+	var green = String(Math.floor(Math.random() * 256));
+	var blue = String(Math.floor(Math.random() * 256));
+	// var rgb_string = "rgb(" + red + ", " + green + ", " + blue + ")";
+	var rgb_string = `rgb(${red}, ${green}, ${blue})`;
+	phrase_zone.style.color = rgb_string;
+}
+
+window.onload = function() {
+	setInterval(draw_him, 10);
+	new_phrase();
+	setInterval(new_phrase, 1000);
+	setInterval(rainbow, 10);
+}
+
+/*
+context.beginPath();
+context.strokeStyle = "green";
+context.arc(95, 50, 40, 0, 2 * Math.PI - 2);
+context.stroke()
+*/
+
+console.log("whew, made it!")
+
+/*
+context.moveTo(0, 0);
+context.lineTo(200, 200);
+context.stroke();
+console.log("helloooooo?");
+*/
+
+</script>
+
+
+</html>
