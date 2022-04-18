@@ -12,6 +12,8 @@
 <div id = "text" style="font-family:comic sans ms; font-size:25px; text-align: center;">
 some words
 </div>
+<button onclick = "boing()">Boing</button>
+
 <script>
 var canvas = document.getElementById("someCanvas");
 var context = canvas.getContext("2d");
@@ -72,6 +74,12 @@ function smoothRainbow(){
 		destination_blue = Math.floor(Math.random() * 256);
 	}
 	phrase_zone.style.color = `rgb(${red}, ${green}, ${blue})`;
+}
+
+const boing_sound = new Audio("boing.wav");
+function boing() {
+	boing_sound.load();
+	boing_sound.play();
 }
 
 function spazzRainbow() {
