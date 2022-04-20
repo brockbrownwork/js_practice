@@ -1,4 +1,5 @@
 <html>
+<body style = "background: black;">
 <div style = "text-align: center;">
 	<canvas id = "someCanvas" width = "200" height = "200" style = "border:1px solid #000000">
 		<div style = "display:none;">
@@ -10,111 +11,12 @@
 	</canvas>
 </div>
 <div id = "text" style="font-family:comic sans ms; font-size:25px; text-align: center;">
-some words
 </div>
-<button onclick = "boing()">Boing</button>
-
-<script>
-var canvas = document.getElementById("someCanvas");
-var context = canvas.getContext("2d");
-var size = 50;
-var x = 0;
-var y = 0;
-var red = Math.floor(Math.random() * 256);
-var blue = Math.floor(Math.random() * 256);
-var green = Math.floor(Math.random() * 256);
-var destination_red = Math.floor(Math.random() * 256);
-var destination_green = Math.floor(Math.random() * 256);
-var destination_blue = Math.floor(Math.random() * 256);
-
-var old_height = window.innerWidth;
-var old_height = window.innerHeight;
-
-const cool_sunglasses = document.getElementById("cool_sunglasses");
-const phrases = ["oh yeah", "woo buddy", "wew lad", "totally unbogus!", "catch you on the flip side!",
-				"see you later, alligator"];
-const phrase_zone = document.getElementById("text");
-
-function clear(){
-	context.clearRect(0, 0, canvas.width, canvas.height);
-}
-
-var canvasMargin = 500
-function conform_canvas(){
-	if (window.innerWidth  - canvasMargin != context.canvas.width || 
-		window.innerHeight  - canvasMargin != context.canvas.height) {
-		// var temp = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
-		console.log("activated! (why?)");
-		context.canvas.width = window.innerWidth - canvasMargin;
-		context.canvas.height = window.innerHeight - canvasMargin;
-		// context.putImageData(temp, 0, 0);
-	}
-}
-
-function draw_him() {
-	context.drawImage(	cool_sunglasses,
-						Math.random() * canvas.width - 100,
-						Math.random() * canvas.height - 100,
-						size * Math.random(),
-						size * Math.random());
-}
-function new_phrase() {
-	var phrase_number = Math.floor(Math.random() * 3);
-	phrase_zone.innerHTML = phrases[phrase_number];
-	
-}
-
-function smoothRainbow(){
-	blue += Math.sign(destination_blue - blue);
-	red += Math.sign(destination_red - red);
-	green += Math.sign(destination_green - green);
-	if (red == destination_red && blue == destination_blue && green == destination_green) {
-		destination_red = Math.floor(Math.random() * 256);
-		destination_green = Math.floor(Math.random() * 256);
-		destination_blue = Math.floor(Math.random() * 256);
-	}
-	phrase_zone.style.color = `rgb(${red}, ${green}, ${blue})`;
-}
-
-const boing_sound = new Audio("boing.wav");
-function boing() {
-	boing_sound.load();
-	boing_sound.play();
-}
-
-function spazzRainbow() {
-	red = Math.floor(Math.random() * 256);
-	green = Math.floor(Math.random() * 256);
-	blue = Math.floor(Math.random() * 256);
-	// var rgb_string = "rgb(" + red + ", " + green + ", " + blue + ")";
-	phrase_zone.style.color = `rgb(${red}, ${green}, ${blue})`;
-}
-
-window.onload = function() {
-	setInterval(draw_him, 10);
-	new_phrase();
-	setInterval(new_phrase, 1000);
-	setInterval(smoothRainbow, 5);
-	// setInterval(conform_canvas, 10);
-}
-
-/*
-context.beginPath();
-context.strokeStyle = "green";
-context.arc(95, 50, 40, 0, 2 * Math.PI - 2);
-context.stroke()
-*/
-
-console.log("whew, made it!")
-
-/*
-context.moveTo(0, 0);
-context.lineTo(200, 200);
-context.stroke();
-console.log("helloooooo?");
-*/
-
+<div style = "text-align: center;">
+	<button onclick = "boing()">Boing</button>
+</div>
+<script src = "main.js">
 </script>
 
-
+</body>
 </html>
