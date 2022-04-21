@@ -1,22 +1,38 @@
 console.log("Hello, test");
 
 var recording = false;
+const recordingStatus = document.getElementById("recordingStatus");
+var debug = true;
+
 
 document.addEventListener('keydown', (event) => {
 	var name = event.key;
 	var code = event.code;
 	
-	console.log(`Key pressed ${name} \r\n Key code value: ${code}`);
+	if (debug) { console.log(`Key pressed ${name} \r\n Key code value: ${code}`); }
 	
 	if (code == 'KeyR') {
 		if (!recording) {
 			recording = true;
-			alert("recording armed, press spacebar to start");
+			recordingStatus.innerHTML = "recording armed, press spacebar to start";
 		}
 		else {
 			recording = false;
-			alert("recording ended");
+			recordingStatus.innerHTML = "recording unarmed, press r to arm recording";
 		}
+	}
+	else if (code == "Space" && recording) {
+		recordingStatus.innerHTML = "recording started";
+	}
+}, false);
+
+document.addEventListener('keyup', (event) => {
+	var name = event.key;
+	var code = event.code;
+	
+	if (debug) { console.log(`Key released ${name} \r\n Key code value: ${code}`); }
+	if (code == 'Space') {
+		// yeah
 	}
 }, false);
 
