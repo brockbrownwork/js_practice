@@ -83,13 +83,17 @@ function playSound(){
 }
 
 function helloTest(){
-	let type = 'sawtooth';
-	let frequency = 110;
-	let duration = 1;
+	let type = 'sine';
+	let frequency = 440;
+	let duration = 10000;
+	console.log("hello?");
+	// oscillate(type, frequency, 10000);
 	// oscillate(type, frequency, 10000);
 	// oscillate(type, frequency * Math.pow(2, 6/12), 10000);
 	for (i = 1; i <= 10; i++) {
+		console.log(`i: ${i}`);
 		oscillate(type, frequency * i, duration);
+		oscillate(type, frequency * i * Math.pow(2, 5/12), duration);
 		oscillate(type, frequency * i * Math.pow(2, 7/12), duration);
 	}
 }
